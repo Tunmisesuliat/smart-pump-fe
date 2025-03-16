@@ -4,29 +4,31 @@ import { LoginFormWrapper } from './style';
 import { useForm } from 'react-hook-form';
 import logo from '../../../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../../../utils/api';
-
 
 interface LoginFormInputs {
-    email: string;
-    password: string;
-  }
+  email: string;
+  password: string;
+}
 
 const LoginForm = () => {
-
-  const { register, handleSubmit, formState: { errors } } = useForm<LoginFormInputs>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormInputs>();
   const navigate = useNavigate();
 
   const onSubmit = async (data: LoginFormInputs) => {
     try {
-    //   const res = await login(data);
-    //   localStorage.setItem("token", res.data.token);
-      navigate("/dashboard");
+      console.log(data);
+      console.log(errors);
+      //   const res = await login(data);
+      //   localStorage.setItem("token", res.data.token);
+      navigate('/dashboard');
     } catch {
-      alert("Invalid credentials");
+      alert('Invalid credentials');
     }
   };
-
 
   return (
     <LoginFormWrapper onSubmit={handleSubmit(onSubmit)}>

@@ -12,7 +12,7 @@ const ProfileDetailsForm = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = () => console.log('hello');
+  const onSubmit = () => console.log(errors);
 
   return (
     <LoginFormWrapper onSubmit={handleSubmit(onSubmit)}>

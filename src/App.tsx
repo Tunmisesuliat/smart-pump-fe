@@ -1,4 +1,4 @@
-import React from 'react';
+/* eslint-disable react/react-in-jsx-scope */
 import Login from './views/auth/login';
 import './index.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
