@@ -47,11 +47,6 @@ const ProfileDetailsForm: React.FC = () => {
 
   return (
     <ProfileFormWrapper onSubmit={handleSubmit(onSubmit)}>
-      {/* <Avatar sx={{ width: 70, height: 70 }} src="/broken-image.jpg" />
-      <div>
-        <span>Balance:</span>
-        <span>{user?.balance || 0}</span>
-      </div> */}
       <InputComponent
         label="First Name"
         errorMessage={errors.firstName?.message}

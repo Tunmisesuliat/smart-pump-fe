@@ -10,7 +10,7 @@ const ProfileBanner = () => {
     <ProfileBannerWrapper>
       <div className="profile-banner-container">
         <div className="user-details-container">
-          <Avatar src="/broken-image.jpg" />
+          <Avatar src={user?.picture} alt="user" />
 
           <div className="user-details">
             <div>
