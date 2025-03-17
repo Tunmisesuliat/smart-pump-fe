@@ -1,23 +1,24 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { InputHTMLAttributes, forwardRef } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
 import styled from 'styled-components';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  register: UseFormRegisterReturn;
   label?: string;
+  errorMessage?: string; // Optional error message support
 }
 
 const InputComponent = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, register, ...rest }, ref) => {
+  ({ label, errorMessage, ...props }, ref) => {
     return (
       <InputComponentWrapper>
         {label && <label>{label}</label>}
-        <CustomInput {...register} {...rest} ref={ref} />
+        <CustomInput {...props} ref={ref} />
+        {errorMessage && <span className="error">{errorMessage}</span>}
       </InputComponentWrapper>
     );
   }
 );
-
+InputComponent.displayName = 'InputComponent';
 export default InputComponent;
 
 const InputComponentWrapper = styled.div`
@@ -25,6 +26,13 @@ const InputComponentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  position: relative;
+  .error {
+    color: red;
+    position: absolute;
+    bottom: -18px;
+    font-size: 12px;
+  }
 `;
 
 const CustomInput = styled.input`
