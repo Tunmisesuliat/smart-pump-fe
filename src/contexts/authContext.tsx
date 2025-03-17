@@ -24,6 +24,7 @@ interface User {
 
 interface AuthContextType {
   user: User | null;
+  loading: boolean;
   loginUser: (data: {
     email: string;
     password: string;
@@ -32,7 +33,9 @@ interface AuthContextType {
   logoutUser: () => void;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export const AuthContext = createContext<AuthContextType | undefined>(
+  undefined
+);
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -40,6 +43,7 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -68,6 +72,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     password: string;
   }): Promise<string | void> => {
     try {
+      setLoading(true);
       const response = await login(data); // Call the login function
       if (response.status === 'success') {
         setUser(response.data);
@@ -77,14 +82,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         return response.message; // Return the error message
       }
 
-      console.log(response.data.sessionToken);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.error('Login failed:', error);
       return 'login failed';
     }
   };
 
   const updateUser = async (data: Partial<User>): Promise<string | void> => {
+    setLoading(true);
     const token = localStorage.getItem('token');
     if (!token) {
       console.error('No token found. User is not authenticated.');
@@ -93,7 +100,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       await updateUserApi(token, data); // Call the API to update user details
       setUser((prevUser) => (prevUser ? { ...prevUser, ...data } : null)); // Update the user state
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.error('Failed to update user:', error);
       return 'failed to update user details.';
     }
@@ -105,7 +114,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loginUser, updateUser, logoutUser }}>
+    <AuthContext.Provider
+      value={{ user, loading, loginUser, updateUser, logoutUser }}
+    >
       {children}
     </AuthContext.Provider>
   );

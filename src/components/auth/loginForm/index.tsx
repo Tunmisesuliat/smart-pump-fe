@@ -19,7 +19,7 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm<LoginFormInputs>();
 
-  const { loginUser } = useAuth();
+  const { loading, loginUser } = useAuth();
   const [errorMessage, setErrorMessage] = useState('');
   const onSubmit = async (data: LoginFormInputs) => {
     try {
@@ -28,26 +28,36 @@ const LoginForm = () => {
         setErrorMessage(message);
       }
     } catch {
-      alert('Invalid credentials');
+      setErrorMessage('Invalid credentials');
     }
   };
 
   return (
-    <LoginFormWrapper onSubmit={handleSubmit(onSubmit)}>
+    <LoginFormWrapper
+      data-testid="login-form"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className="logo-wrapper">
         <img src={logo} alt="logo" />
       </div>
       <InputComponent
+        id="email"
         label="Email"
         errorMessage={errors.email?.message}
         {...register('email', { required: 'Email is required' })}
       />
       <InputComponent
+        id="password"
         label="Password"
         errorMessage={errors.password?.message}
         {...register('password', { required: 'Password is required' })}
       />
-      <SubmitButton style={{ marginTop: '20px' }} label="Login" />
+      <SubmitButton
+        disabled={loading}
+        style={{ marginTop: '20px' }}
+        label="Login"
+        name="Login"
+      />
       {errorMessage && <span className="error-message">{errorMessage}</span>}
     </LoginFormWrapper>
   );

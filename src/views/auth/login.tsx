@@ -5,7 +5,7 @@ import { LoginWrapper } from './style';
 
 const Login = () => {
   return (
-    <AppLayout>
+    <AppLayout data-testid="app-layout">
       <LoginWrapper>
         <LoginForm />
       </LoginWrapper>

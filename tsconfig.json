@@ -1,7 +1,15 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true, // Ensure this is set to true
+    "moduleResolution": "node", // Set to "node" for Node.js-style resolution
+    "types": ["vitest", "@testing-library/jest-dom", "react-hook-form"], // Ensure it includes react-hook-form if needed
+    "composite": true,
+    "jsx": "react-jsx",
+    "noEmit": true
+  },
+  "exclude": ["node_modules", "build", "dist"]
 }

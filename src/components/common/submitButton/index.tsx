@@ -4,11 +4,23 @@ import styled from 'styled-components';
 interface SubmitButtonProps {
   label?: string;
   style?: React.CSSProperties;
+  name?: string;
+  disabled?: boolean;
 }
 
-const SubmitButton = ({ label = 'Submit', style }: SubmitButtonProps) => {
+const SubmitButton = ({
+  label = 'Submit',
+  style,
+  name = 'submit',
+  disabled = false,
+}: SubmitButtonProps) => {
   return (
-    <ButtonComponent type="submit" style={style}>
+    <ButtonComponent
+      type="submit"
+      style={style}
+      name={name}
+      disabled={disabled}
+    >
       {label}
     </ButtonComponent>
   );
