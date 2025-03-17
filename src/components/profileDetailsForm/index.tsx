@@ -31,7 +31,7 @@ const ProfileDetailsForm: React.FC = () => {
   // Set default values when user data is available
   useEffect(() => {
     if (user) {
-      setValue('firstName', user.firstName || ''); // Adjust based on your user structure
+      setValue('firstName', user.firstName || '');
       setValue('lastName', user.lastName || '');
       setValue('email', user.email || '');
       setValue('company', user.company || '');

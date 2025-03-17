@@ -54,7 +54,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         })
         .catch((error) => {
           console.error('Failed to fetch user details:', error);
-          // Optionally clear the token if user details can't be fetched
+          // clear the token if user details can't be fetched
           localStorage.removeItem('token');
           navigate('/');
         });
