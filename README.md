@@ -78,3 +78,7 @@ yarn install
 ```bash
  npm run test
 ```
+
+
+### Notes:
+- The backend api is hosted on a free tier of Render, and may take about a minute on the first load
