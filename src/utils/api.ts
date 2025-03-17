@@ -1,5 +1,4 @@
-
-const BASE_URL = "https://smart-pump-be.onrender.com"
+const BASE_URL = 'https://smart-pump-be.onrender.com';
 
 export const login = async (data: { email: string; password: string }) => {
   return fetch(`${BASE_URL}/v1/user/login`, {

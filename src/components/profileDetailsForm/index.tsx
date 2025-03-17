@@ -1,11 +1,10 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useForm } from 'react-hook-form';
-import { LoginFormWrapper } from '../auth/loginForm/style';
 import InputComponent from '../common/inputComponent';
 import SubmitButton from '../common/submitButton';
-import { Avatar } from '@mui/material';
 import { useAuth } from '../../contexts/authContext';
 import { useEffect, useState } from 'react';
+import { ProfileFormWrapper } from './style';
 
 interface UserFormInputs {
   firstName: string;
@@ -17,7 +16,7 @@ interface UserFormInputs {
 }
 
 const ProfileDetailsForm: React.FC = () => {
-  const { user } = useAuth(); // Access user details from context
+  const { user, updateUser } = useAuth(); // Access user details from context
   const [errorMessage, setErrorMessage] = useState('');
   const {
     register,
@@ -25,8 +24,6 @@ const ProfileDetailsForm: React.FC = () => {
     setValue, // Use setValue to set default values
     formState: { errors },
   } = useForm<UserFormInputs>();
-
-  const { updateUser } = useAuth();
 
   // Set default values when user data is available
   useEffect(() => {
@@ -49,12 +46,12 @@ const ProfileDetailsForm: React.FC = () => {
   };
 
   return (
-    <LoginFormWrapper onSubmit={handleSubmit(onSubmit)}>
-      <Avatar sx={{ width: 70, height: 70 }} src="/broken-image.jpg" />
+    <ProfileFormWrapper onSubmit={handleSubmit(onSubmit)}>
+      {/* <Avatar sx={{ width: 70, height: 70 }} src="/broken-image.jpg" />
       <div>
         <span>Balance:</span>
         <span>{user?.balance || 0}</span>
-      </div>
+      </div> */}
       <InputComponent
         label="First Name"
         errorMessage={errors.firstName?.message}
@@ -87,8 +84,8 @@ const ProfileDetailsForm: React.FC = () => {
       />
 
       <SubmitButton style={{ marginTop: '20px' }} label="Update" />
-      {errorMessage && <span className="error">{errorMessage}</span>}
-    </LoginFormWrapper>
+      {errorMessage && <span className="error-message">{errorMessage}</span>}
+    </ProfileFormWrapper>
   );
 };
 

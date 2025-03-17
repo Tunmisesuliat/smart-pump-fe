@@ -47,8 +47,8 @@ const LoginForm = () => {
         errorMessage={errors.password?.message}
         {...register('password', { required: 'Password is required' })}
       />
-      <SubmitButton style={{ marginTop: '20px' }} label="LOGIN" />
-      {errorMessage && <span className="error">{errorMessage}</span>}
+      <SubmitButton style={{ marginTop: '20px' }} label="Login" />
+      {errorMessage && <span className="error-message">{errorMessage}</span>}
     </LoginFormWrapper>
   );
 };

@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 
-export const LoginFormWrapper = styled.form`
-  width: 100%;
-  height: 100%;
+export const ProfileFormWrapper = styled.form`
+  height: calc(80% - 32px);
+  width: 320px;
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 26px;
-  oerflow-y: auto;
+  overflow-y: auto;
+  scrollbar-width: none;
   position: relative;
+  padding: 16px;
   .error-message {
     color: red;
     font-size: 16px;
