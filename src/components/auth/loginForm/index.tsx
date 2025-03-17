@@ -1,9 +1,11 @@
+/* eslint-disable react/react-in-jsx-scope */
 import InputComponent from '../../common/inputComponent';
 import SubmitButton from '../../common/submitButton';
 import { LoginFormWrapper } from './style';
 import { useForm } from 'react-hook-form';
 import logo from '../../../assets/logo.png';
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../contexts/authContext';
+import { useState } from 'react';
 
 interface LoginFormInputs {
   email: string;
@@ -16,15 +18,15 @@ const LoginForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormInputs>();
-  const navigate = useNavigate();
 
+  const { loginUser } = useAuth();
+  const [errorMessage, setErrorMessage] = useState('');
   const onSubmit = async (data: LoginFormInputs) => {
     try {
-      console.log(data);
-      console.log(errors);
-      //   const res = await login(data);
-      //   localStorage.setItem("token", res.data.token);
-      navigate('/dashboard');
+      const message = await loginUser(data);
+      if (message) {
+        setErrorMessage(message);
+      }
     } catch {
       alert('Invalid credentials');
     }
@@ -36,16 +38,17 @@ const LoginForm = () => {
         <img src={logo} alt="logo" />
       </div>
       <InputComponent
-        label="email"
-        register={register('email')}
-        // placeholder="Enter u"
+        label="Email"
+        errorMessage={errors.email?.message}
+        {...register('email', { required: 'Email is required' })}
       />
       <InputComponent
         label="Password"
-        register={register('password')}
-        // placeholder="Enter password"
+        errorMessage={errors.password?.message}
+        {...register('password', { required: 'Password is required' })}
       />
       <SubmitButton style={{ marginTop: '20px' }} label="LOGIN" />
+      {errorMessage && <span className="error">{errorMessage}</span>}
     </LoginFormWrapper>
   );
 };

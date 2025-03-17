@@ -6,8 +6,15 @@ export const LoginFormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 26px;
   oerflow-y: auto;
+  position: relative;
+  .error {
+    color: red;
+    font-size: 12px;
+    position: absolute;
+    bottom: 40px;
+  }
   .logo-wrapper {
     width: 100%;
     display: flex;

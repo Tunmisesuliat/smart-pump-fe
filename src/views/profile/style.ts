@@ -5,4 +5,5 @@ export const ProfileWrapper = styled.div`
   height: auto;
   width: 320px;
   margin: auto;
+  background:;
 `;
