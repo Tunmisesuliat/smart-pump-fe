@@ -16,7 +16,7 @@ interface UserFormInputs {
 }
 
 const ProfileDetailsForm: React.FC = () => {
-  const { user, updateUser } = useAuth(); // Access user details from context
+  const { user, loading, updateUser } = useAuth(); // Access user details from context
   const [errorMessage, setErrorMessage] = useState('');
   const {
     register,
@@ -83,7 +83,11 @@ const ProfileDetailsForm: React.FC = () => {
         {...register('phone', { required: 'phone is required' })}
       />
 
-      <SubmitButton style={{ marginTop: '20px' }} label="Update" />
+      <SubmitButton
+        disabled={loading}
+        style={{ marginTop: '20px' }}
+        label="Update"
+      />
       {errorMessage && <span className="error-message">{errorMessage}</span>}
     </ProfileFormWrapper>
   );

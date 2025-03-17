@@ -1,26 +1,31 @@
 {
   "compilerOptions": {
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo", // Path for incremental build info
+    "target": "ES2020", // Specify ECMAScript target version
+    "useDefineForClassFields": true, // Use define for class fields
+    "lib": ["ES2020", "DOM", "DOM.Iterable"], // Include necessary libraries
+    "module": "ESNext", // Specify module code generation
+    "skipLibCheck": true, // Skip type checking of declaration files
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "isolatedModules": true,
-    "moduleDetection": "force",
-    "noEmit": true,
-    "jsx": "react-jsx",
+    "moduleResolution": "node", // Use bundler-specific module resolution
+    "allowImportingTsExtensions": true, // Allow importing TypeScript files with their .ts extension
+    "isolatedModules": true, // Ensure each file can be transpiled independently
+    "moduleDetection": "force", // Force detection of modules
+    "noEmit": true, // Disable emitting files
+    "jsx": "react-jsx", // Specify JSX code generation mode
 
     /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "strict": true, // Enable all strict type-checking options
+    "noUnusedLocals": true, // Report errors on unused local variables
+    "noUnusedParameters": true, // Report errors on unused function parameters
+    "noFallthroughCasesInSwitch": true, // Report errors for fallthrough cases in switch statements
+    "noUncheckedSideEffectImports": true, // Report errors on imports that might have side effects
+
+    "composite": true, // Enable composite project for project references
+    "outDir": "./dist", // Specify an output directory for compiled files
+    "types": ["vitest", "@testing-library/jest-dom"] // Include type definitions
   },
-  "include": ["src"]
+  "include": ["src/**/*"], // Include all TypeScript files in the src directory
+  "exclude": ["node_modules", "build", "dist"] // Exclude unnecessary directories
 }

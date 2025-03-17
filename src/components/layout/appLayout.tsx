@@ -7,7 +7,9 @@ interface AppLayoutProps {
 }
 
 const AppLayout = ({ children }: AppLayoutProps) => {
-  return <AppLayoutWrapper>{children}</AppLayoutWrapper>;
+  return (
+    <AppLayoutWrapper data-testid="app-layout">{children}</AppLayoutWrapper>
+  );
 };
 
 export default AppLayout;

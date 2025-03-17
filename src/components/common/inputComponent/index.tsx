@@ -11,7 +11,7 @@ const InputComponent = forwardRef<HTMLInputElement, InputProps>(
   ({ label, errorMessage, ...props }, ref) => {
     return (
       <InputComponentWrapper>
-        {label && <label>{label}</label>}
+        {label && <label htmlFor={props.id}>{label}</label>}
         <CustomInput {...props} ref={ref} />
         {errorMessage && <span className="error">{errorMessage}</span>}
       </InputComponentWrapper>
